@@ -160,8 +160,6 @@ function App() {
     ]
 
     const [todo, setTodo] = useState<TodoType[]>([])
-    console.log(todo)
-
 
     useEffect(() => {
         setTodo(todoFromServer.map(el => ({...el, todolistId: v1()})))
@@ -179,13 +177,14 @@ function App() {
     }
 
     function addTask(title: string, todolistId: string) {
-        // let task = {id: v1(), title: title, isDone: false};
+        let newTask = {taskId: v1(), title: title, isDone: false};
         // //достанем нужный массив по todolistId:
         // let todolistTasks = tasks[todolistId];
         // // перезапишем в этом объекте массив для нужного тудулиста копией, добавив в начало новую таску:
         // tasks[todolistId] = [task, ...todolistTasks];
         // // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         // setTasks({...tasks});
+        setTodo(todo.map(el => el.todolistId === todolistId ? {...el, tasks: [newTask, ...el.tasks]}  : el  ))
     }
 
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
