@@ -176,7 +176,7 @@ function App() {
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-        setTodo(todo.map(el => el.todolistId === todolistId ? {...el, tasks: el.tasks.map(fl => fl.taskId === taskId ? {...fl, isDone}  : fl )} : el))
+        setTodo(todo.map(el => el.todolistId === todolistId ? {...el, tasks: el.tasks.map(t => t.taskId === taskId ? {...t, isDone}  : t )} : el))
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
